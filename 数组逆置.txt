@@ -1,0 +1,49 @@
+#include<stdio.h>
+int main(){
+	void Reverse(int arr[], int n);
+	int array[10];
+	int *p1;
+	int i;
+	p1 = array;
+	printf("input the initial array:\n");
+	for (i=0; i<10; i++)    //输入数组
+		scanf("%d", p1++);
+	printf("逆置前的数组为:\n");
+	p1 = array;
+	for (i=0; i<10; i++,p1++) //打印逆置之前的数组
+		printf("%d ", *p1);
+	Reverse(array, 10);
+	printf("\n逆置后的数组为：\n"); 
+	p1 = array;
+	for (i=0; i<10; i++,p1++) ////输出逆置之后的数组
+			printf("%d ", *p1);
+	printf("\n");
+
+}
+void Reverse(int arr[], int n) //数组首地址作为形参
+{
+	
+	int *pointer_1 = arr; //指针pointer_1初始时指向数组起始处，从前往后移动
+	int temp; //中间变量
+	int *pointer_2 = arr+n-1; //指针pointer_2初始时指向数组结尾处，从后往前移动
+	if (n%2 == 0) // 数组长度若为偶数
+	{
+		while(pointer_1+1 != pointer_2) 
+		{//交换
+			temp = *pointer_1;
+			*pointer_1++ = *pointer_2;
+			*pointer_2-- = temp;
+		}
+	if (n%2 == 1) //数组长度若为奇数
+	{
+		while(pointer_1 != pointer_2)
+		{
+			temp = *pointer_1;
+			*pointer_1++ = *pointer_2;
+			*pointer_2-- = temp;
+		}
+	}
+
+	}
+
+}
