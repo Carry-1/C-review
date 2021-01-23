@@ -103,6 +103,6 @@ typedef  char  T[10];
 ```
 typedef  char  T[10];  
     T  *a;
-# <font color=red>等价于char *a[10],没理解.</font>为什么typedef定义了T是char[10]这样的一种数据类型。 
-
+# <font color=red>等价于char （*a）[10],这题参考牛客网.</font>
+typedef  char  T[10];  的意思是 T的char[10]的新名 故 T *a相当于定义了一个指向char[10]的指针，
  
