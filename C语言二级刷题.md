@@ -106,3 +106,4 @@ typedef  char  T[10];
 # <font color=red>等价于char （*a）[10],这题参考牛客网.</font>
 typedef  char  T[10];  的意思是 T的char[10]的新名 故 T *a相当于定义了一个指向char[10]的指针，
  
+ # 刷到了考点9 第12题
