@@ -64,4 +64,71 @@ int main()
 feof函数：可以检查文件读写位置标记是否移到文件的末尾，即磁盘文件是否读写结束，如是，函数返回值为1，否则为0.
 
 ----
-预处理命令行不能以分号结尾，预处理命令行可以出现在程序的最后一行，**预处理命令行作用域是整个文件**。
+预处理命令行不能以分号结尾，**预处理命令行可以出现在程序的最后一行，预处理命令行作用域是整个文件**。
+
+----
+# 结构体数组的定义
+定义结构体数组只能有两种方法：
+**1.** 声明结构体类型的同时定义结构体变量
+```
+# include <stdio.h>
+void main()
+{
+	struct st
+	{
+		int a;
+		struct st *p;
+	}c[3]= {5,&c[1],6,&c[2],7,'\0'};
+}
+
+--------------------Configuration: project1 - Win32 Debug--------------------
+Compiling...
+project1.c
+Linking...
+
+project1.exe - 0 error(s), 0 warning(s)
+```
+**2.** 先声明结构体类型，再定义结构体变量
+```
+# include <stdio.h>
+void main()
+{
+	struct st
+	{
+		int a;
+		struct st *p;
+	};
+struct st	c[3]= {5,&c[1],6,&c[2],7,'\0'};
+}
+
+
+--------------------Configuration: project1 - Win32 Debug--------------------
+Compiling...
+project1.c
+Linking...
+
+project1.exe - 0 error(s), 0 warning(s)
+
+```
+<font color=red>错误的定义方法<font>：
+```
+# include <stdio.h>
+void main()
+{
+	struct st
+	{
+		int a;
+		struct st *p;
+	}c[3];
+	c[3]= {5,&c[1],6,&c[2],7,'\0'};
+}
+
+--------------------Configuration: project1 - Win32 Debug--------------------
+Compiling...
+project1.c
+E:\C-programming-review\project1.c(9) : error C2059: syntax error : '{'
+执行 cl.exe 时出错.
+
+project1.exe - 1 error(s), 0 warning(s)
+
+```

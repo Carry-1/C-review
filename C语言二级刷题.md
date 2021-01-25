@@ -106,4 +106,45 @@ typedef  char  T[10];
 # <font color=red>等价于char （*a）[10],这题参考牛客网.</font>
 typedef  char  T[10];  的意思是 T的char[10]的新名 故 T *a相当于定义了一个指向char[10]的指针，
  
- # 刷到了考点9 第12题
+ 
+#include <stdio.h>
+main()
+{  
+    char  c[2][5]={"6938","8254" }, *p[2];
+    int  i, j, s=0;
+    for( i=0; i<2; i++ )  p[i]=c[i]; 
+    for( i=0; i<2; i++ )
+        for( j=0; p[i][j]>0 ; j+=2 )  s=10*s+p[i][j]-'0';
+    printf("%d\n",s); 
+}
+
+p[i][j]会取到'6'，会取到'3'，但是他们与整形进行运算时，按照ASCII表，分别表示54,51；
+'0'表示48，结果'6'-'0'=6, '3'-'0'=3；实现了字符型数字到整型数字的转化。
+以后我们想把字符型或字符串型数字，转化为表面上大小的整型数字的时候，也可以这么做。
+~
+在ASCII表中，'\0'表示的是0，在ASCII表的第一位。
+
+# <font color=red>7.</font>
+```
+#include <stdio.h>
+void main()
+{
+char c='0'; int b;
+printf("%d\n",c);
+b=c<<1;
+printf("%d\n",b);
+
+}
+```
+```
+[Running] cd "e:\C-programming-review\" && gcc project1.c -o project1 && "e:\C-programming-review\"project1
+48
+96
+
+[Done] exited with code=3 in 0.257 seconds
+
+```
+**位运算的对象只能是整型或字符型数据**
+
+
+ # 刷到了考点9 第30题
