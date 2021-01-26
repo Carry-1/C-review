@@ -1,3 +1,4 @@
+# <font color=green>（1）考点9</font> 😁
 # <font color=red>1.</font>
  ```
  #include <stdio.h>
@@ -145,6 +146,45 @@ printf("%d\n",b);
 
 ```
 **位运算的对象只能是整型或字符型数据**
+# <font color=green>（2）考点7</font> 😁
+# <font color=red>8.难</font>
+
+```
+ #include <stdio.h>
+ int  k=7;
+ void f(int  **s)
+ {  int  *t=&k;
+    *s=t;
+    printf("%d,%d,%d,", k, *t, **s); 
+ }
+ main()
+ {  int  i=3,*p=&i, **r = &p;
+    f(r);     printf("%d,%d,%d\n", i, *p, **r); 
+ }
+```
+运行结果：
+```
+[Running] cd "e:\C-programming-review\" && gcc project1.c -o project1 && "e:\C-programming-review\"project1
+7,7,7,3,7,7
+[Done] exited with code=6 in 0.524 seconds
+```
+分析：考点：指针的指针。   
+本题各个变量的数据类型分别为：   
+i,k为整型变量，   
+p，t为整型指针，   
+r,s为指针，不过它们所指向的内容还是指针。
+
+<font color=red>难理解：</font>main函数中先让p指向i，即*p=i,再让r指向p,即 *r=p,**r= *p=i;再执行f（r），将r作为实参传给s，则 s=r, *s= *r=p，再让t指向k，即 *t=k,故此时 *s= *r=p=t,指针s所指向存储区域的内容变为t，又因为指针s和指针r指向同一片区域，故导致指针r所指向存储区域的内容变为t，又因为指针r所指向的区域为指针变量p的内容，故指针变量p的内容变为t，故在f函数调用结束后, **r= *p= *t=k=7.   
+<font color=red>本题可与上面的第3题对照着理解</font>，   
+在第3题中，函数的参数是指针变量，而本题函数的参数是指针的指针，     
+并且，在第3题中，并没有改变指针所指向的变量的值，改变的只是指针的值，故在函数调用完以后，函数外部作为实参的那个指针没有发生任何变化；而本题在所调用的函数中改变了指针所指向的变量的值，所以函数外部作为实参的指针和它所指向的变量的值都发生了变化。
 
 
- # 刷到了考点9 第30题
+
+
+
+
+
+ # 刷到了考点7第5题
+ # 刷到了考点9第30题
+ #
