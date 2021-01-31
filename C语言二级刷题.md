@@ -235,8 +235,38 @@ Press any key to continue
 
 
 
-# <font color=green>（3）考点8</font> 😁
 
+# <font color=green>（3）考点8</font> 😁
+<font color=red>10.</font>
+```
+ #include <stdio.h>
+ main()
+ {  char  a[20], b[ ]="The sky is blue.";  int i;
+    for (i=0; i<10; i++)  scanf("%c", &a[i]);
+    a[i]='\0';
+    gets(b);
+    printf("%s%s\n", a,b);
+ }
+
+运行结果：
+Fig flower is red.
+Fig flower is red.
+Press any key to continue
+```
+分析：gets函数是从stdin流中读取字符串到b中，在遇到回车符时会自动将其转换成'\0'加入到字符串的末尾。故在用for循环将Fig flower输入到a中以及调用gets函数之后，b中元素为_is red.'\0'is blue. 用printf输出为Fig flower is red.
+scanf.
+> gets函数的原型为 char *gets(* buffer),它会从stdin流中读取字符串，直到遇到换行符或EOF为止，并将读取到的字符存到buffer指针所指向的字符数组中，换行符不作为读取串的内容，而是被转换为'\0',作为字符串的结束标志，若读入成功，返回与参数buffer相同的字符指针，若读入过程中遇到EOF或发生错误，返回NULL指针。   
+
+<font color=red>11.</font>
+
+A）char  *s = "ABCDE" ;
+
+B）char  *s ;  gets( s );
+
+C）char  s[4][5] = { "ABCDE" };
+
+D）char  s[5] = { 'A', 'B', 'C', 'D', 'E' };
+选A  选项B是s是个野指针，不安全。选项D要想让S中存的是字符串，结尾应该是'\0'
 
  # 刷到了考点7第17题
  # 刷到了考点9第30题
