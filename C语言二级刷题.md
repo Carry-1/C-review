@@ -233,8 +233,15 @@ Press any key to continue
 考点：数组名作为函数形参。    
 分析：fun函数以数组名作为函数形参，编译系统在编译时，会将作为形参数组名当做指针处理，用来接收一个地址，在调用fun函数时，会将实参数组的首地址传递给形参数组名。因此，在fun函数中对数组元素值的更改，在fun函数调用结束后返回main函数时仍会保留。
 
+-----
+A）int* p1; int ** p2; int *p3;都是合法的定义指针变量的语句
 
+B）语句p=NULL;执行后，指针p指向地址为0的存储单元
 
+C）指针变量只能通过求地址运算符（&) 来获得地址值
+
+D）语句p=NULL;与p=\0;是等价的语句
+分析：B选项，P=NULL表示p不指向任何存储单元
 
 # <font color=green>（3）考点8</font> 😁
 <font color=red>10.</font>
@@ -268,6 +275,73 @@ C）char  s[4][5] = { "ABCDE" };
 D）char  s[5] = { 'A', 'B', 'C', 'D', 'E' };
 选A  选项B是s是个野指针，不安全。选项D要想让S中存的是字符串，结尾应该是'\0'
 
- # 刷到了考点7第17题
+
+<font color=red>12.</font>
+```
+ #include <stdio.h>
+ void  fun( char  **p )
+ {  int  i;
+    for(i=0; i<4; i++ ) printf("%s",p[i]);
+ }
+ main()
+ {  char  *s[6]={ "ABCD","EFGH","IJKL","MNOP","QRST","UVWX" } ;
+    fun(s);    printf("\n"  );
+ }
+```
+
+```
+18.有以下程序
+#include <stdio.h>
+fun( int a, int b )
+{  
+    int  static  m=0, i=2;
+    i=i+m+1;   
+    m=i+a+b;
+    return  m;
+}
+main()
+{  
+    int  k=4, m=1, p;
+    p=fun( k, m); 
+    printf("%d,",p);
+    p=fun( k, m); 
+    printf("%d\n",p);
+}
+
+分析：fun函数里面的m和main函数里面的m不是同一个m。
+```
+
+# <font color=green>（4）考点6</font> 😁
+```
+<font color=red>13.</font>
+ #include <stdio.h>
+    main()
+    {  int  a=1,b=2,c=3,d=4;
+       if ((a=2) || (b=1)) c=2;
+       if ((c==3) && (d=-1)) a=5;
+       printf("%d,%d,%d,%d\n", a,b,c,d);
+    }
+```
+考点：在逻辑表达式的求解中，并不是所有的逻辑运算符都会被执行，只是在必须执行下一个逻辑运算符才能求出表达式的值时，才会执行该运算符
+
+<font color=red>14.</font>
+```
+ #include <stdio.h>
+    main()
+    {  int  s=0, n;
+       for (n=0; n<4; n++)  
+       {  switch(n) 
+         {  default:  s+=4;
+            case 1:  s+=1;
+            case 2:  s+=2;
+            case 3:  s+=3;
+         }
+       }
+       printf("%d\n", s); 
+    }
+ ```
+分析：考查switch语句。在执行switch语句时，先计算switch后面表达式的值，然后再将其与各case标号比较，若都不相同，且有default标号，则执行default标号后面的语句。  可知，各case语句和default语句出现的先后结果并不影响执行结果（前提是每个标号后面的语句中最后一条都是break；）
+ # 刷到了考点7第26题
  # 刷到了考点9第30题
  # 刷到了考点8第10题
+ # 刷到了考点6第10题
