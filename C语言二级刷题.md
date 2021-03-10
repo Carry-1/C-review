@@ -643,3 +643,90 @@ q = &p;
 在GCC编译器（64位）上编译运行，输出为886。sizeof(str1)为求字符串的字符个数，包括结尾符。而strlen(str1)为求字符串的实际字符个数，不包括结尾符。
     
  字符串中的字符依次存储在内存中一块连续的区域内，并且把空字符' \0'自动附加到字符串的尾部作为字符串的结束标志。故字符个数为n的字符串在内存中应占（n+1）个字节。语句char str[10] ="string!"; 和char str[10]={"string!"}; 等价，可以使用字符串常量来给一维字符数组赋值，在语句char str[]="string!";中数组str长度比字符串长度小一个字节，字符串中包含隐含的结尾符。
+
+<font color=red> 关于字符串的初始化：</font>
+`char str1[]="str1";`则字符数组将包含5个元素。（易忘）即用字符串对未指明长度的字符数组初始化时，编译器会自动在末尾加上一个结束符'\0'。而字符数组的最后一个元素不一定必须为'\0',这是显然的，因为字符数组不一定是用来存放字符串的，它可能只是用来存放一个个不相关的字符。而如果这样来定义字符串`char str[] = {'s','t','r','1','\0'};`则结尾的'\0'是必须的。
+
+<font color=red>字符串数组，是指数组中的每个元素都是一个存放字符串的一维数组，意思是每个元素都是一个数组，且这个字符串数组实际上是二维数组。</font>
+
+<font color=red>两个字符串不可以用关系运算符比较大小么</font>
+```
+#include <stdio.h>
+#include <string.h>
+    int main()
+	{
+		printf("%d\n",strlen("a"));
+	
+return 0;
+    }
+
+1
+Press any key to continue
+```
+由运行结果可知strlen函数返回的是字符串占用内存空间的实际长度，不包括结尾符。
+
+<font color=red>printf函数在输出时的一些格式问题</font>
+```
+#include <stdio.h>
+
+    int main()
+	{
+		int a = 1234;
+		double d = 123.1415;
+		printf("%1.3lf\n",d);
+		return 0;
+    }
+123.141
+Press any key to continue
+```
+```
+#include <stdio.h>
+
+    int main()
+	{
+		int a = 1234;
+		double d = 123.1415;
+		printf("%3d %1.3lf\n",a,d);
+		return 0;
+    }
+
+1234 123.141
+Press any key to continue
+```
+
+```
+#include <stdio.h>
+
+    int main()
+	{
+		int a = 1234;
+		double d = 123.1415;
+		printf("%5d\n",a);
+		printf("%9.3lf\n",d);
+
+		return 0;
+    }
+ 1234
+  123.141
+Press any key to continue
+
+```
+```
+#include <stdio.h>
+#include <string.h>
+
+    int main()
+	{
+		int a = 1234;
+		double d = 123.1415678;
+		printf("%5d\n",a);
+		printf("%9.3lf\n",d);
+
+		return 0;
+    }
+
+ 1234
+  123.141
+Press any key to continue
+```
+`printf("%m.nf",d);`可见，对于形如%m.nf的浮点数，若其整数位数>m 则输出整数部分的全部位数，若其整数位数小于m且m小于总位数,则整数部分+小数部分（包括小数点）总共输出m位，小数部分四舍五入，整数部分左边留空格。 若m大于全部位数，则全部输出。左边留空格
