@@ -730,3 +730,40 @@ Press any key to continue
 Press any key to continue
 ```
 `printf("%m.nf",d);`可见，对于形如%m.nf的浮点数，若其整数位数>m 则输出整数部分的全部位数，若其整数位数小于m且m小于总位数,则整数部分+小数部分（包括小数点）总共输出m位，小数部分四舍五入，整数部分左边留空格。 若m大于全部位数，则全部输出。左边留空格
+
+```
+#include <stdio.h>
+#include <string.h>
+
+    int main()
+	{
+		typedef char T[10];
+		T *a;
+		char (*b)[10];
+		char *c;
+		char *d[10];
+		printf("&a=%d\n", a);
+		printf("&(a+1)=%d\n", a+1);
+		printf("&b=%d\n", b);
+		printf("&(b+1)%d\n", b+1);
+		printf("&c=%d\n", c);
+		printf("&(c+1)=%d\n", c+1);
+		printf("&d=%d\n", d);
+		printf("&(d+1)=%d\n", d+1);
+		return 0;
+    }
+
+    运行结果：
+&a=-858993460
+&(a+1)=-858993450
+&b=-858993460
+&(b+1)-858993450
+&c=-858993460
+&(c+1)=-858993459
+&d=1703692
+&(d+1)=1703696
+Press any key to continue
+
+
+```
+`~i;`表示对i按位取反
